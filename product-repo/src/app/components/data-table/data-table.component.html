@@ -1,0 +1,84 @@
+<div class="search-container">
+    <mat-form-field class="search-field" [floatLabel]="'never'">
+        <div style="width: 70%;">
+            <input matInput placeholder="Type here to search" [(ngModel)]="searchKey">
+        </div>
+    </mat-form-field>
+    <button mat-raised-button class="primary button-gap" (click)="searchForData()">Search</button>
+    <button mat-raised-button class="button-gap" (click)="clearData()">Clear Data</button>
+</div>
+<h3 class="header-data">
+    <span class="header-label">Item List:</span>
+    <span class="add-btn">
+      <button mat-raised-button class="success" (click)="addNewItem()">Add New Item</button>
+    </span>
+  </h3>
+<div class="mat-elevation-z8 table-data">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <div *ngFor="let item of displayedColumns">
+      <ng-container [matColumnDef]="item">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{headerName[item].name}}</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div [ngSwitch]="headerName[item].type">
+            <div *ngSwitchCase="'link'">
+              <span class="fake-link" (click)="editItem(row)">
+                {{row[item]}}
+              </span>
+            </div>
+            <div *ngSwitchCase="'calculation'">
+              <span>
+                {{getDiscountedValue(row)}}
+              </span>
+            </div>
+            <div *ngSwitchCase="'boolean'">
+              <span [ngClass]="!!row[item] ? 'available': 'not-available'">
+                {{!!row[item] ? 'Yes': 'No'}}
+              </span>
+            </div>
+            <div *ngSwitchCase="'actions'">
+              <div style="cursor: pointer;">
+                <mat-icon class="icons" aria-label="Edit" title="Edit" style="margin-right: 10px"
+                  (click)="editItem(row)">create</mat-icon>
+                <mat-icon class="icons" aria-label="Delete" title="Delete" style="color: rgba(255, 0, 0, 0.74)"
+                  (click)="deleteItem(row)">delete</mat-icon>
+                  <mat-icon id="expand_more"  #expand_more *ngIf="!row.close " (click)="expand(row)">expand_more</mat-icon>
+                <mat-icon id="expand_less"  #expand_less *ngIf="row.close " (click)="expand(row)">expand_less</mat-icon>
+                <!-- <mat-accordion></mat-accordion> -->
+              </div>
+
+            </div>
+            <div *ngSwitchDefault>{{row[item]}}</div>
+
+          </div>
+        </mat-cell>
+      </ng-container>
+    </div>
+
+    <mat-header-row class="full-width-table" *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row class="full-width-table" *matRowDef="let row; columns: displayedColumns;"   [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl"
+    (toggleChange)="onToggleChange($event,row)">
+      <div>
+        No Data to show
+      </div>
+    </mat-row>
+    
+  </table>
+  <table>
+    <tr *ngIf="!dataSource.data.length">
+      <td style="text-align: center;" [attr.colspan]="displayedColumns.length">
+        No Records Found!
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[1,5, 10, 20]" aria-label="Select page">
+  </mat-paginator>
+
+  
+</div>
+<ng-template #tpl let-element>
+    <div style="padding: 20px 10px 20px 50px">
+        <b>Description:&nbsp;&nbsp;</b>{{element.item_desc}}
+    </div>
+</ng-template>

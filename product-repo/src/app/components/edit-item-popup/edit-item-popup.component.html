@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>{{headerName}}</h2>
+
+<mat-dialog-content [formGroup]="editForm">
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput placeholder="Item ID" formControlName="id">
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput type="text" placeholder="Item Name" formControlName="item_name" required>
+    <mat-error>
+      Item Name is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput type="text" placeholder="Item Description" formControlName="item_desc">
+    <mat-error>
+      Maximum text length is 50
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput type="number" (input)="amountChanged()" placeholder="Original Price" formControlName="original_price" minValue="0" required>
+    <mat-error>
+      Original Price is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput (input)="amountChanged()" type="number" placeholder="Discount in %" formControlName="discount" minValue="0" maxValue="100">
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <input matInput placeholder="Discounted Amount" formControlName="discounted_amount">
+  </mat-form-field>
+  <mat-form-field class="full-width-input bottom-padding">
+    <mat-label>Is Item Available</mat-label>
+    <select formControlName="isAvailable" matNativeControl required>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="close()">Close</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!editForm.valid">Save</button>
+</mat-dialog-actions>

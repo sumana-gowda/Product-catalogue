@@ -1,0 +1,52 @@
+{
+    "inventory": [
+      {
+        "id": 1,
+        "item_name": "Nokia Mobile",
+        "item_desc": "Nokia Mobile is a best product in the market",
+        "original_price": 12500,
+        "discount": 20,
+        "isAvailable": false
+      },
+      {
+        "id": 2,
+        "item_name": "Classmate Notebook",
+        "item_desc": "Very nice and cool book 12hdefggfdhfgifghfvdhcv",
+        "original_price": 100,
+        "discount": 10,
+        "isAvailable": true
+      },
+      {
+        "id": 3,
+        "item_name": "HP Laptop",
+        "item_desc": "HP Laptop with 1 year warranty and security.",
+        "original_price": 56700,
+        "discount": 10,
+        "isAvailable": true
+      },
+      {
+        "id": 4,
+        "item_name": "Sandisk Pendrive",
+        "item_desc": "Pendrive with 64GB",
+        "original_price": 1500,
+        "discount": 11,
+        "isAvailable": false
+      },
+      {
+        "id": 5,
+        "item_name": "Redmi Mobile",
+        "item_desc": "Redmi Mobile is a best product in the market",
+        "original_price": 22500,
+        "discount": 5,
+        "isAvailable": true
+      },
+      {
+        "id": 6,
+        "item_name": "Laptop Charger",
+        "item_desc": "HP Laptop charger",
+        "original_price": 990,
+        "discount": 3,
+        "isAvailable": true
+      }
+    ]
+  }
