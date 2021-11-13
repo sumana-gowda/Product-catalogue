@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  position: relative;
+  background: url('./assets/images/warehouse.png');
+  background-attachment: fixed;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  backdrop-filter: blur(2px);
+}
+
+h1 {
+  text-align: center;
+}
+
+.mat-simple-snackbar {
+  font-size: 1.2em;
+  color: white;
+}
+
+.snackbar-error {
+  background-color: red;
+}
+
+.snackbar-success {
+  background-color: green;
+}
+
+.snackbar-info {
+  background-color: gray;
+}
